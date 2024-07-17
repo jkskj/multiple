@@ -2,8 +2,9 @@ package main
 
 import (
 	"context"
-	"log"
 	"net"
+
+	"github.com/cloudwego/kitex/pkg/klog"
 
 	"github.com/cloudwego/kitex/server"
 
@@ -16,8 +17,8 @@ var _ echo.One = &server1{}
 
 type server1 struct{}
 
-func (o server1) One(ctx context.Context, req *echo.Request) (res *echo.Response, err error) {
-	log.Println("one")
+func (o server1) One(context.Context, *echo.Request) (res *echo.Response, err error) {
+	klog.Info("one")
 	return &echo.Response{Message: "one"}, nil
 }
 
@@ -25,8 +26,8 @@ var _ echo.Two = &server2{}
 
 type server2 struct{}
 
-func (o server2) Two(ctx context.Context, req *echo.Request) (res *echo.Response, err error) {
-	log.Println("two")
+func (o server2) Two(context.Context, *echo.Request) (res *echo.Response, err error) {
+	klog.Info("two")
 	return &echo.Response{Message: "two"}, nil
 }
 
@@ -46,7 +47,7 @@ func main() {
 	}
 
 	if err = svr.Run(); err != nil {
-		log.Println(err.Error())
+		klog.Info(err.Error())
 	}
 }
 
