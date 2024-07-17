@@ -1,0 +1,20 @@
+syntax = "proto3";
+package echo;
+
+option go_package = "echo";
+
+message Request{
+
+}
+
+message Response{
+    string message = 1;
+}
+
+service One {
+    rpc One (Request) returns (Response) {}
+}
+
+service Two {
+    rpc Two (Request) returns (Response) {}
+}
